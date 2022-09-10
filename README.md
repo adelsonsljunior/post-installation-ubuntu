@@ -1,16 +1,27 @@
-Script de pós-instalação do Ubuntu para automação da instalação das minhas ferramentas e linguaguens usadas em programação: 
+Scripts de pós-instalação do Ubuntu para automação da instalação das minhas ferramentas e linguaguens usadas em programação: 
 
-+ Instalação do Java - Openjdk 17
-+ Instalação e configuração do Git
+### programacao.sh
+
++ Instalação do Java - OpenJDK 17
++ Instalação do Git
 + Instalação do NodeJs via snap
++ Instalação do Python - PIP
+
+    + Pymongo
+
+    + Virtualenv
+
+### mongodb.sh
+
++ Instalação do MongoDB
 
 ### Como rodar :
 
 ~~~
 $ git clone https://github.com/adelsonsljunior/pos-instalacao-ubuntu.git
 $ cd pos-instalacao-ubuntu/
-$ chmod +x programacao.sh
-$ ./programacao.sh
+$ chmod +x nomedoarquivo.sh
+$ ./nomedoarquivo.sh
 ~~~
 
 <br>

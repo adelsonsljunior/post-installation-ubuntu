@@ -1,10 +1,12 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-# Atualização dos repositórios #
+## Atualização dos repositórios 
 
-sudo apt-get update
+sudo apt -y update
 
-# Instalação do Git #
+### Instação dos programas
+
+## Instalação do Git 
 
 echo
 echo "---------------------------"
@@ -12,16 +14,11 @@ echo "     INSTALANDO O GIT"
 echo "---------------------------"
 echo
 
-sudo apt install git
+sudo apt -y install git
 
 echo
 
-# Configuração do Git #
-
-git config --global user.name "coloque seu nome de usúario"
-git config --global user.email coloqueseuemail
-
-# Instalação do Java - OpenJDK 17 #
+## Instalação do Java - OpenJDK 17 
 
 echo
 echo "------------------------------"
@@ -29,11 +26,11 @@ echo "     INSTALANDO O OPENJDK"
 echo "------------------------------"
 echo
 
-sudo apt install openjdk-17-jdk
+sudo apt -y install openjdk-17-jdk
 
 echo
 
-# Instalação do NodeJS 16.16.0 via snap#
+## Instalação do NodeJS 16.16.0 via snap
 
 echo
 echo "------------------------------"
@@ -45,7 +42,21 @@ sudo snap install node --classic
 
 echo
 
-# Exibindo as versões dos programas instalados #
+## Instalção do Python - PIP
+
+echo
+echo "----------------------------------"
+echo "     INSTALANDO O PYTHON PIP"
+echo "----------------------------------"
+echo
+
+sudo apt -y install python3-pip
+
+pip install pymongo
+pip install virtualenv
+
+
+### Exibindo as versões dos programas instalados #
 
 echo 
 echo "Versão do Git:"
@@ -62,3 +73,15 @@ echo "Versão do NodeJs:"
 echo 
 
 node --version
+
+echo 
+echo "Versão do pip:"
+echo 
+
+pip --version
+
+echo
+echo
+echo
+
+apt moo moo moo
