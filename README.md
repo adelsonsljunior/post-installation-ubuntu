@@ -4,6 +4,7 @@ Scripts de pós-instalação do Ubuntu para automação da instalação das minh
 
 + Instalação do Java - OpenJDK 17
 + Instalação do Git
++ Instalação do Curl
 + Instalação do NodeJs via snap
 + Instalação do Python - PIP
 
@@ -15,6 +16,10 @@ Scripts de pós-instalação do Ubuntu para automação da instalação das minh
 
 + Instalação do MongoDB
 
+
+### docker.sh
+
++ Instalação do Docker
 ### Como rodar :
 
 ~~~

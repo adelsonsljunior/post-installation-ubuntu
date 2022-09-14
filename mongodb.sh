@@ -14,4 +14,6 @@ sudo systemctl start mongod
 
 sudo systemctl status mongod
 
+# Este APT tem Poderes de Super Vaca.
 
+apt moo moo moo

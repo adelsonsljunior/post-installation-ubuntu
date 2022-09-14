@@ -18,6 +18,18 @@ sudo apt -y install git
 
 echo
 
+## Instalação do Curl 
+
+echo
+echo "---------------------------"
+echo "     INSTALANDO O CURL"
+echo "---------------------------"
+echo
+
+sudo apt -y install curl
+
+echo
+
 ## Instalação do Java - OpenJDK 17 
 
 echo
@@ -63,6 +75,12 @@ echo "Versão do Git:"
 echo 
 git --version
 
+
+echo 
+echo "Versão do Curl:"
+echo 
+curl --version
+
 echo 
 echo "Versão do Java:"
 echo 
@@ -83,5 +101,7 @@ pip --version
 echo
 echo
 echo
+
+# Este APT tem Poderes de Super Vaca.
 
 apt moo moo moo
