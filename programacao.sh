@@ -58,15 +58,26 @@ echo
 
 echo
 echo "----------------------------------"
-echo "     INSTALANDO O PYTHON PIP"
+echo "         INSTALANDO O  PIP"
 echo "----------------------------------"
 echo
 
 sudo apt -y install python3-pip
 
-pip install pymongo
 pip install virtualenv
 
+
+
+## Instalção do DBeaver
+
+echo
+echo "----------------------------------"
+echo "        INSTALANDO O DBeaver"
+echo "----------------------------------"
+echo
+
+
+sudo snap install dbeaver-ce
 
 ### Exibindo as versões dos programas instalados #
 

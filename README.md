@@ -7,26 +7,20 @@ Scripts de pós-instalação do Ubuntu para automação da instalação das minh
 + Instalação do Curl
 + Instalação do NodeJs via snap
 + Instalação do Python - PIP
-
-    + Pymongo
-
     + Virtualenv
-
-### mongodb.sh
-
-+ Instalação do MongoDB
++ Instalação do DBeaver - CE via snap
 
 
 ### docker.sh
 
-+ Instalação do Docker
++ [Instalação do Docker](https://docs.docker.com/engine/install/ubuntu/)
 ### Como rodar :
 
 ~~~
 $ git clone https://github.com/adelsonsljunior/pos-instalacao-ubuntu.git
 $ cd pos-instalacao-ubuntu/
-$ chmod +x nomedoarquivo.sh
-$ ./nomedoarquivo.sh
+$ chmod +x nome_do_arquivo.sh
+$ ./nome_do_arquivo.sh
 ~~~
 
 <br>
