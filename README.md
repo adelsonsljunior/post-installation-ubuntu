@@ -1,26 +1,47 @@
 Scripts de pós-instalação do Ubuntu para automação da instalação das minhas ferramentas e linguaguens usadas em programação: 
 
-### programacao.sh
+### Desktop
 
-+ Instalação do Java - OpenJDK 17
-+ Instalação do Git
-+ Instalação do Curl
-+ Instalação do NodeJs via snap
-+ Instalação do Python - PIP
++ Docker
++ Java - OpenJDK 17
++ Git
++ Curl
++ NodeJs via snap
++ Python - PIP
     + Virtualenv
-+ Instalação do DBeaver - CE via snap
++ DBeaver - CE via snap
 
+### Server
 
-### docker.sh
++ neofetch
++ Docker
 
-+ [Instalação do Docker](https://docs.docker.com/engine/install/ubuntu/)
+<br>
+
 ### Como rodar :
+
+1. Clone o repositório e abra o diretório
 
 ~~~
 $ git clone https://github.com/adelsonsljunior/pos-instalacao-ubuntu.git
 $ cd pos-instalacao-ubuntu/
-$ chmod +x nome_do_arquivo.sh
-$ ./nome_do_arquivo.sh
+~~~
+
+2. Escolha qual script de instalação deseja usar
+
++ Desktop
+~~~
+$ cd desktop/
+$ chmod +x script.sh
+$ ./script.sh
+~~~
+
++ Server
+
+~~~
+$ cd server/
+$ chmod +x script.sh
+$ ./script.sh
 ~~~
 
 <br>
