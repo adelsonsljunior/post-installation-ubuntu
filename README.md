@@ -1,19 +1,22 @@
-Scripts de pós-instalação do Ubuntu para automação da instalação das minhas ferramentas e linguaguens usadas em programação: 
+'Scripts de pós-instalação do Ubuntu para automação da instalação das minhas ferramentas e linguaguens usadas em programação: 
 
 ### Desktop
 
-+ Docker
-+ Java - OpenJDK 17
++ [Docker](https://docs.docker.com/engine/install/ubuntu/)
+    + [Portainer](https://docs.portainer.io/start/install-ce/server/docker/linux)
 + Git
-+ Curl
-+ NodeJs via snap
++ Java - OpenJDK 17
++ [NodeJs via snap](https://snapcraft.io/node)
++ [Go via snap](https://snapcraft.io/go)
 + Python - PIP
     + Virtualenv
-+ DBeaver - CE via snap
++ [DBeaver - CE](https://www.edivaldobrito.com.br/dbeaver-no-ubuntu-e-derivados/)
++ [Insominia](https://docs.insomnia.rest/insomnia/install)
++ [VS Code]()
 
 ### Server
 
-+ neofetch
++ Neofetch
 + Docker
 
 <br>
@@ -46,5 +49,7 @@ $ ./script.sh
 
 <br>
 
+![Bash](https://img.shields.io/badge/Shell_Script-121011?style=for-the-badge&logo=gnu-bash&logoColor=white)
 ![Ubuntu](https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white)
 ![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
+
