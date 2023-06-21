@@ -1,8 +1,12 @@
 #!/bin/bash
 
-## Atualização dos repositórios 
+## Atualização dos repositórios e dos programas instalados
 
 sudo apt update -y
+
+sudo apt upgrade -y
+
+sudo snap refresh
 
 ### Instação dos programas
 
@@ -45,7 +49,17 @@ sudo service docker start
 
 sudo docker run hello-world
 
+sudo groupadd docker
+
+sudo usermod -aG docker $USER
+
 ## Instalação do Portainer
+
+echo
+echo "---------------------------"
+echo "  INSTALANDO O PORTAINER"
+echo "---------------------------"
+echo
 
 # First, create the volume that Portainer Server will use to store its database:
 
@@ -54,6 +68,16 @@ docker volume create portainer_data
 # Then, download and install the Portainer Server container:
 
 docker run -d -p 8000:8000 -p 9000:9000 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
+
+## Neofetch
+
+echo
+echo "---------------------------"
+echo "   INSTALANDO O NEOFETCH"
+echo "---------------------------"
+echo
+
+sudo apt install -y neofetch
 
 ## Instalação do Git 
 
@@ -123,10 +147,9 @@ pip install virtualenv
 
 echo
 echo "----------------------------------"
-echo "      INSTALANDO O DBEAVER"
+echo "    INSTALANDO O DBEAVER - CE"
 echo "----------------------------------"
 echo
-
 
 echo "deb https://dbeaver.io/debs/dbeaver-ce /" | sudo tee /etc/apt/sources.list.d/dbeaver.list
 
@@ -169,6 +192,32 @@ rm -f packages.microsoft.gpg
 sudo apt install apt-transport-https -y
 sudo apt update -y
 sudo apt install code -y 
+
+## Instalação do Virtualbox
+
+echo
+echo "----------------------------------"
+echo "      INSTALANDO O VIRTUALBOX"
+echo "----------------------------------"
+echo
+
+wget https://download.virtualbox.org/virtualbox/7.0.8/virtualbox-7.0_7.0.8-156879~Ubuntu~jammy_amd64.deb
+
+sudo apt install ./virtualbox-7.0_7.0.8-156879~Ubuntu~jammy_amd64.deb -y
+
+rm virtualbox-7.0_7.0.8-156879~Ubuntu~jammy_amd64.deb
+
+## Instalação do Vagrant
+
+echo
+echo "----------------------------------"
+echo "      INSTALANDO O VAGRANT"
+echo "----------------------------------"
+echo
+
+wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+sudo apt update -y && sudo apt install vagrant -y
 
 ### Exibindo as versões dos programas instalados #
 
@@ -217,6 +266,19 @@ echo "Versão do VS Code:"
 echo
 code --version
 
+echo
+echo "Versão do Vagrant:"
+echo
+vagrant --version
+
 # Este APT tem Poderes de Super Vaca.
 
 apt moo moo moo
+
+# Parando scrpit por 60 segundos
+
+sleep 1m
+
+# Reiniciando computador
+
+sudo reboot

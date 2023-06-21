@@ -1,9 +1,10 @@
-Scripts de pós-instalação do Ubuntu para automação da instalação das minhas ferramentas e linguaguens usadas em programação: 
+Scripts de pós-instalação do Ubuntu para automação da instalação das minhas ferramentas e linguaguens usadas em programação e DevOps: 
 
 ### Desktop
 
 + [Docker](https://docs.docker.com/engine/install/ubuntu/)
     + [Portainer](https://docs.portainer.io/start/install-ce/server/docker/linux)
++ Neofetch
 + Git
 + Java - OpenJDK 17
 + [NodeJs via snap](https://snapcraft.io/node)
@@ -12,7 +13,9 @@ Scripts de pós-instalação do Ubuntu para automação da instalação das minh
     + Virtualenv
 + [DBeaver - CE](https://www.edivaldobrito.com.br/dbeaver-no-ubuntu-e-derivados/)
 + [Insominia](https://docs.insomnia.rest/insomnia/install)
-+ [VS Code]()
++ [VS Code](https://code.visualstudio.com/docs/setup/linux)
++ [VirtualBox](https://www.virtualbox.org/wiki/Linux_Downloads)
++ [Vagrant](https://developer.hashicorp.com/vagrant/downloads)
 
 ### Server
 
@@ -25,7 +28,7 @@ Scripts de pós-instalação do Ubuntu para automação da instalação das minh
 
 1. Clone o repositório e abra o diretório
 
-~~~
+~~~bash
 $ git clone https://github.com/adelsonsljunior/pos-instalacao-ubuntu.git
 $ cd pos-instalacao-ubuntu/
 ~~~
@@ -33,18 +36,14 @@ $ cd pos-instalacao-ubuntu/
 2. Escolha qual script de instalação deseja usar
 
 + Desktop
-~~~
-$ cd desktop/
-$ chmod +x script.sh
-$ ./script.sh
+~~~bash
+$ sh desktop/script.sh
 ~~~
 
 + Server
 
-~~~
-$ cd server/
-$ chmod +x script.sh
-$ ./script.sh
+~~~bash
+$ sh server/script.sh
 ~~~
 
 <br>
