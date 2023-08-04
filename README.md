@@ -24,6 +24,13 @@ Scripts de pós-instalação do Ubuntu para automação da instalação das minh
 
 <br>
 
+### WSL
+
++ Neofetch
++ [sdkman](https://sdkman.io/install)
++ Java 20.0.2 via sdkman
++ Maven 3.6.3 via sdkman
+
 ### Como rodar :
 
 1. Clone o repositório e abra o diretório
@@ -36,14 +43,21 @@ $ cd pos-instalacao-ubuntu/
 2. Escolha qual script de instalação deseja usar
 
 + Desktop
+
 ~~~bash
-$ sh desktop/script.sh
+$ sh desktop/desktop.sh
 ~~~
 
 + Server
 
 ~~~bash
-$ sh server/script.sh
+$ sh server/server.sh
+~~~
+
++ WSL
+
+~~~bash
+$ sh wsl/wsl.sh
 ~~~
 
 <br>
@@ -51,4 +65,5 @@ $ sh server/script.sh
 ![Bash](https://img.shields.io/badge/Shell_Script-121011?style=for-the-badge&logo=gnu-bash&logoColor=white)
 ![Ubuntu](https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white)
 ![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
+![WSL](https://img.shields.io/badge/WSL-0a97f5?style=for-the-badge&logo=linux&logoColor=white)
 
