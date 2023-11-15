@@ -17,12 +17,7 @@ Scripts de pós-instalação do Ubuntu para automação da instalação das minh
 + [VirtualBox](https://www.virtualbox.org/wiki/Linux_Downloads)
 + [Vagrant](https://developer.hashicorp.com/vagrant/downloads)
 
-### WSL
-
-+ Neofetch
-+ [sdkman](https://sdkman.io/install)
-+ Java 20.0.2 via sdkman
-+ Maven 3.6.3 via sdkman
+<br>
 
 ### Como rodar :
 
@@ -33,18 +28,12 @@ $ git clone https://github.com/adelsonsljunior/pos-instalacao-ubuntu.git
 $ cd pos-instalacao-ubuntu/
 ~~~
 
-2. Escolha qual script de instalação deseja usar
+2. Excecute o script
 
 + Desktop
 
 ~~~bash
 $ sh desktop/desktop.sh
-~~~
-
-+ WSL
-
-~~~bash
-$ sh wsl/wsl.sh
 ~~~
 
 <br>
