@@ -17,13 +17,6 @@ Scripts de pós-instalação do Ubuntu para automação da instalação das minh
 + [VirtualBox](https://www.virtualbox.org/wiki/Linux_Downloads)
 + [Vagrant](https://developer.hashicorp.com/vagrant/downloads)
 
-### Server
-
-+ Neofetch
-+ Docker
-
-<br>
-
 ### WSL
 
 + Neofetch
@@ -46,12 +39,6 @@ $ cd pos-instalacao-ubuntu/
 
 ~~~bash
 $ sh desktop/desktop.sh
-~~~
-
-+ Server
-
-~~~bash
-$ sh server/server.sh
 ~~~
 
 + WSL
