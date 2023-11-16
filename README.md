@@ -6,16 +6,15 @@ Scripts de pós-instalação do Ubuntu para automação da instalação das minh
     + [Portainer](https://docs.portainer.io/start/install-ce/server/docker/linux)
 + Neofetch
 + Git
-+ Java - OpenJDK 17
-+ [NodeJs via snap](https://snapcraft.io/node)
-+ [Go via snap](https://snapcraft.io/go)
-+ Python - PIP
-    + Virtualenv
++ [Java e Maven via SDKMAN](https://sdkman.io/install)
++ [Go via GVM](https://github.com/moovweb/gvm)
 + [DBeaver - CE](https://www.edivaldobrito.com.br/dbeaver-no-ubuntu-e-derivados/)
 + [Insominia](https://docs.insomnia.rest/insomnia/install)
 + [VS Code](https://code.visualstudio.com/docs/setup/linux)
 + [VirtualBox](https://www.virtualbox.org/wiki/Linux_Downloads)
 + [Vagrant](https://developer.hashicorp.com/vagrant/downloads)
++ [Ruby via RVM](https://github.com/rvm/ubuntu_rvm)
++ [Brave](https://brave.com/pt-br/linux/)
 
 <br>
 
