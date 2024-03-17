@@ -1,4 +1,7 @@
-Scripts de pós-instalação do Ubuntu para automação da instalação das minhas ferramentas e linguaguens usadas em programação e DevOps: 
+# ⚠️ Código com erro, por favor não usar. Algum dia, quando tiver com disposição, conserto ⚠️
+
+Scripts de pós-instalação do Ubuntu para automação da instalação das minhas ferramentas e linguaguens usadas 
+em programação e DevOps: 
 
 ### Desktop
 
@@ -29,8 +32,6 @@ $ cd pos-instalacao-ubuntu/
 
 2. Excecute o script
 
-+ Desktop
-
 ~~~bash
 $ sh desktop/desktop.sh
 ~~~
@@ -40,5 +41,6 @@ $ sh desktop/desktop.sh
 ![Bash](https://img.shields.io/badge/Shell_Script-121011?style=for-the-badge&logo=gnu-bash&logoColor=white)
 ![Ubuntu](https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white)
 ![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
-![WSL](https://img.shields.io/badge/WSL-0a97f5?style=for-the-badge&logo=linux&logoColor=white)
+
+
 
