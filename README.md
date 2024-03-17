@@ -1,4 +1,4 @@
-# ⚠️ Código com erro, por favor não usar. Algum dia, quando tiver com disposição, conserto ⚠️
+# ⚠️ Código com erro, não usar. Algum dia, quando tiver com disposição, conserto ⚠️
 
 Scripts de pós-instalação do Ubuntu para automação da instalação das minhas ferramentas e linguaguens usadas 
 em programação e DevOps: 
@@ -33,7 +33,7 @@ $ cd pos-instalacao-ubuntu/
 2. Excecute o script
 
 ~~~bash
-$ sh desktop/desktop.sh
+$ sh desktop/script.sh
 ~~~
 
 <br>
