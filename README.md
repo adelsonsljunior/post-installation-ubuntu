@@ -26,14 +26,14 @@ em programação e DevOps:
 1. Clone o repositório e abra o diretório
 
 ~~~bash
-$ git clone https://github.com/adelsonsljunior/pos-instalacao-ubuntu.git
-$ cd pos-instalacao-ubuntu/
+$ git clone https://github.com/adelsonsljunior/pos-install-ubuntu.git
+$ cd pos-install-ubuntu/
 ~~~
 
 2. Excecute o script
 
 ~~~bash
-$ sh desktop/script.sh
+$ sh script.sh
 ~~~
 
 <br>
