@@ -12,6 +12,8 @@ sudo apt install curl -y
 
 curl -fsSL https://get.docker.com | sudo bash
 
+sudo apt install neofetch tmux vim htop build-essential -y
+
 ## Additional settings
 
 # Change git init default branch name
