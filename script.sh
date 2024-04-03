@@ -8,6 +8,8 @@ sudo apt update -y
 
 sudo apt install git -y
 
+sudo apt install curl -y
+
 ## additional settings
 
 # Change git init default branch name
