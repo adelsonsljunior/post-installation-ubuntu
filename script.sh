@@ -14,6 +14,13 @@ curl -fsSL https://get.docker.com | sudo bash
 
 sudo apt install neofetch tmux vim htop build-essential -y
 
+curl -s "https://get.sdkman.io" | bash
+source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+sdk install java
+sdk install quarkus
+sdk install kotlin
+
 ## Additional settings
 
 # Change git init default branch name
