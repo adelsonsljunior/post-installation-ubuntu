@@ -10,7 +10,9 @@ sudo apt install git -y
 
 sudo apt install curl -y
 
-## additional settings
+curl -fsSL https://get.docker.com | sudo bash
+
+## Additional settings
 
 # Change git init default branch name
 
