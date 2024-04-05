@@ -78,3 +78,8 @@ sudo apt install code -y
 # Change git init default branch name
 
 git config --global init.defaultBranch main
+
+# Creating the docker group and add your user
+
+sudo groupadd docker
+sudo usermod -aG docker $USER
