@@ -1,6 +1,6 @@
 #!/bin/bash
 
-## initializing repository update
+## Initializing repository update
 
 sudo apt update -y
 
@@ -51,9 +51,6 @@ echo "deb [arch=amd64] http://download.virtualbox.org/virtualbox/debian $(lsb_re
 sudo apt update -y
 sudo apt install -y linux-headers-$(uname -r) dkms
 sudo apt install virtualbox-7.0 -y
-
-wget https://download.virtualbox.org/virtualbox/7.0.0/Oracle_VM_VirtualBox_Extension_Pack-7.0.0.vbox-extpack
-sudo VBoxManage extpack install Oracle_VM_VirtualBox_Extension_Pack-7.0.0.vbox-extpack
 
 # VS Code
 
