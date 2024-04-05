@@ -4,13 +4,9 @@
 
 sudo apt update -y
 
-## Install programs
+## Installing programs using apt
 
-sudo apt install git -y
-
-sudo apt install curl -y
-
-sudo apt install neofetch tmux vim htop build-essential net-tools -y
+sudo apt install git curl neofetch tmux vim htop build-essential net-tools -y
 
 # Docker and Portainer
 
