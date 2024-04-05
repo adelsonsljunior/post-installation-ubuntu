@@ -1,162 +1,87 @@
 #!/bin/bash
 
-### Variáveis ###
-
-THUMBS_UP='\U1F44D' ## Emoji de joinha 
-
-URL_VIRTUAL_BOX=https://download.virtualbox.org/virtualbox/7.0.8/virtualbox-7.0_7.0.8-156879~Ubuntu~jammy_amd64.deb
-URL_MOBGODB_COMPASS=https://downloads.mongodb.com/compass/mongodb-compass_1.40.4_amd64.deb
-
-DIRETORIO_DOWNLOADS="$HOME/Downloads/programas"
-
-PROGRAMAS_PARA_INSTALAR=(
-  neofetch
-  git
-  docker-ce 
-  docker-ce-cli 
-  containerd.io 
-  docker-buildx-plugin
-  docker-compose-plugin
-  dbeaver-ce
-  insomnia
-  apt-transport-https
-  code
-  vagrant
-  brave-browser
-  unzip
-  zip
-  software-properties-common
-  rvm
-  bison
-)
-
-### Atualizando repositórios ###
+## Starting with updating repositories
 
 sudo apt update -y
 
-### Adicionando repositórios externos ###
+## Adding repositories 
 
-## Docker
+# VirtualBox
 
-sudo apt install ca-certificates curl gnupg -y
+cd /tmp
 
-sudo install -m 0755 -d /etc/apt/keyrings
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-sudo chmod a+r /etc/apt/keyrings/docker.gpg
+curl https://www.virtualbox.org/download/oracle_vbox_2016.asc | gpg --dearmor > oracle_vbox_2016.gpg
+curl https://www.virtualbox.org/download/oracle_vbox.asc | gpg --dearmor > oracle_vbox.gpg
+sudo install -o root -g root -m 644 oracle_vbox_2016.gpg /etc/apt/trusted.gpg.d/
+sudo install -o root -g root -m 644 oracle_vbox.gpg /etc/apt/trusted.gpg.d/
 
-echo \
-  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-  "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
-  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+echo "deb [arch=amd64] http://download.virtualbox.org/virtualbox/debian $(lsb_release -sc) contrib" | sudo tee /etc/apt/sources.list.d/virtualbox.list
 
-## DBeaver - CE
+# VS Code
 
-echo "deb https://dbeaver.io/debs/dbeaver-ce /" | sudo tee /etc/apt/sources.list.d/dbeaver.list
-wget -O - https://dbeaver.io/debs/dbeaver.gpg.key | sudo apt-key add -
-
-## Insomnia
-
-echo "deb [trusted=yes arch=amd64] https://download.konghq.com/insomnia-ubuntu/ default all" \
-    | sudo tee -a /etc/apt/sources.list.d/insomnia.list
-
-## VS Code
-
-sudo apt-get install wget gpg
+sudo apt-get install wget gpg -y
 wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
 sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
 sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
 rm -f packages.microsoft.gpg
 
-## Vagrant
-
-wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
-echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
-
-## Brave Browser
-
-sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
-echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
-
-## RVM 
-
-sudo apt-add-repository -y ppa:rael-gc/rvm
-
-### Atualizando repositórios ###
+## Updating with new additional repositories
 
 sudo apt update -y
 
-### Download e instalaçao de programas externos ###
-mkdir -p "$DIRETORIO_DOWNLOADS"
-wget -c "$URL_VIRTUAL_BOX"      -P "$DIRETORIO_DOWNLOADS"
-wget -c "$URL_MOBGODB_COMPAS"   -P "$DIRETORIO_DOWNLOADS"
+## Installing programs using apt
 
-## Instalando pacotes .deb baixados na sessão anterior #
-sudo dpkg -i $DIRETORIO_DOWNLOADS/*.deb
-rm -r "$DIRETORIO_DOWNLOADS"
+sudo apt install -y git curl neofetch tmux vim htop build-essential net-tools apt-transport-https vagrant
+sudo apt install -y linux-headers-$(uname -r) dkms virtualbox-7.0
+sudo apt install -y code
 
-## Instalar programas no apt
-for nome_do_programa in ${PROGRAMAS_PARA_INSTALAR[@]}; do
-  if ! dpkg -l | grep -q "$nome_do_programa"; then # Só instala se já não estiver instalado
-    sudo apt install "$nome_do_programa" -y
-    echo "$nome_do_programa - [INSTALADO COM SUCESSO] ${THUMBS_UP}"
-  else
-    echo "$nome_do_programa - [JÁ INSTALADO] ${THUMBS_UP}"
-  fi
-done
+# Docker and Portainer
 
-## SDKMAN ##
+curl -fsSL https://get.docker.com | sudo bash
+
+sudo docker volume create portainer_data
+sudo docker run -d -p 8000:8000 -p 9000:9000 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
+
+# SDKMAN
 
 curl -s "https://get.sdkman.io" | bash
 source "$HOME/.sdkman/bin/sdkman-init.sh"
 
-bash
+sdk install java
+sdk install quarkus
+sdk install kotlin
 
-sdk insall java 20.0.2-open
+# asdf
 
-sdk install maven 3.6.3
-sdk default maven 3.6.3
+git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.0
+. "$HOME/.asdf/asdf.sh"
+echo '. "$HOME/.asdf/asdf.sh"' >> ~/.bashrc
 
-## RVM ##
+asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+asdf install nodejs 20.12.1
+asdf global nodejs 20.12.1
 
-sudo usermod -a -G rvm $USER
+asdf plugin add golang https://github.com/asdf-community/asdf-golang.git
+asdf install golang 1.22.1
+asdf global golang 1.22.1
 
-rvm install 3.2.2
+## Additional settings
 
-## GVM
-
-bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
-
-bash
-
-gvm install go1.4 -B
-gvm use go1.4 
-
-gvm install go1.21.4 -B
-gcvm use go1.21.4
-
-### Configurações adicionais ###
-
-## Change git init default branch name
+# Change git init default branch name
 
 git config --global init.defaultBranch main
 
-## Verificando se o Docker Engine está instalado corretamente executando a hello-world imagem.
-
-sudo service docker start
-
-sudo docker run hello-world
+# Creating the docker group and add your user
 
 sudo groupadd docker
-
 sudo usermod -aG docker $USER
 
-## Instalação do Portainer
+## Finishing with updating and cleaning the system
 
-docker volume create portainer_data
-
-docker run -d -p 8000:8000 -p 9000:9000 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
-
-### Finalizando com atualização e limpeza do sistema ###
 sudo apt update -y && sudo apt upgrade -y
-sudo apt autoclean
+sudo apt autoclean -y
 sudo apt autoremove -y
+
+## Reboot
+
+sudo reboot
