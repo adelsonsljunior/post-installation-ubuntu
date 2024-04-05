@@ -83,3 +83,9 @@ git config --global init.defaultBranch main
 
 sudo groupadd docker
 sudo usermod -aG docker $USER
+
+## Finishing with updating and cleaning the system
+
+sudo apt update -y && sudo apt upgrade -y
+sudo apt autoclean -y
+sudo apt autoremove -y
