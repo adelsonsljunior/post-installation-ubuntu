@@ -3,7 +3,7 @@
 > ## How to run:
 
 ~~~bash
-$ curl -s https://raw.githubusercontent.com/adelsonsljunior/pos-install-ubuntu/main/script.sh | bash
+$ curl -s https://raw.githubusercontent.com/adelsonsljunior/post-installation-ubuntu/main/script.sh | bash
 ~~~
 
 <br>
