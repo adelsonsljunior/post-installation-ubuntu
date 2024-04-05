@@ -1,7 +1,5 @@
 # pos-install-ubuntu
 
-<br>
-
 > ## How to run:
 
 ~~~bash
