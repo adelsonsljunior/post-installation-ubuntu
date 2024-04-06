@@ -1,10 +1,32 @@
-# pos-install-ubuntu
+# post-installation-ubuntu
+git curl neofetch tmux vim htop build-essential net-tools apt-transport-https vagrant
+
+
 
 > ## How to run:
 
 ~~~bash
 $ curl -s https://raw.githubusercontent.com/adelsonsljunior/post-installation-ubuntu/main/script.sh | bash
 ~~~
+
+<br>
+
+> ## Content
+
++ Git, Curl, Neofetch, Tmux, Vim, Htop, build-essential, net-tools 
++ Oracle VirtualBox
++ Vagrant
++ VS Code
++ Docker 
+    + Portainer
++ SDKMAN
+    + Java
+    + Quarkus
+    + Kotlin
++ asdf
+    + Nodejs
+    + Golang
+
 
 <br>
 
