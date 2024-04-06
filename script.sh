@@ -17,6 +17,10 @@ sudo install -o root -g root -m 644 oracle_vbox.gpg /etc/apt/trusted.gpg.d/
 
 echo "deb [arch=amd64] http://download.virtualbox.org/virtualbox/debian $(lsb_release -sc) contrib" | sudo tee /etc/apt/sources.list.d/virtualbox.list
 
+# Vagrant
+wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+
 # VS Code
 
 sudo apt-get install wget gpg -y
@@ -31,8 +35,9 @@ sudo apt update -y
 
 ## Installing programs using apt
 
-sudo apt install -y git curl neofetch tmux vim htop build-essential net-tools apt-transport-https vagrant
+sudo apt install -y git curl neofetch tmux vim htop build-essential net-tools apt-transport-https
 sudo apt install -y linux-headers-$(uname -r) dkms virtualbox-7.0
+sudo apt install -y vagrant
 sudo apt install -y code
 
 # Docker and Portainer
