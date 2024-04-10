@@ -1,7 +1,4 @@
 # post-installation-ubuntu
-git curl neofetch tmux vim htop build-essential net-tools apt-transport-https vagrant
-
-
 
 > ## How to run:
 
