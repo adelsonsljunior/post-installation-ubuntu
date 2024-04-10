@@ -35,19 +35,19 @@ sudo apt update -y
 
 ## Installing programs using apt
 
-sudo apt install -y git curl neofetch tmux vim htop build-essential net-tools apt-transport-https
+sudo apt install -y git curl neofetch tmux vim htop build-essential net-tools 
 sudo apt install -y linux-headers-$(uname -r) dkms virtualbox-7.0
 sudo apt install -y vagrant
-sudo apt install -y code
+sudo apt install -y apt-transport-https code
 
-# Docker and Portainer
+## Docker and Portainer
 
 curl -fsSL https://get.docker.com | sudo bash
 
 sudo docker volume create portainer_data
 sudo docker run -d -p 8000:8000 -p 9000:9000 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
 
-# SDKMAN
+## SDKMAN
 
 curl -s "https://get.sdkman.io" | bash
 source "$HOME/.sdkman/bin/sdkman-init.sh"
@@ -55,7 +55,7 @@ source "$HOME/.sdkman/bin/sdkman-init.sh"
 sdk install java
 sdk install kotlin
 
-# asdf
+## asdf
 
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.0
 . "$HOME/.asdf/asdf.sh"
