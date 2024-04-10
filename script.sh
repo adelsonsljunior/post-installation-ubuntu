@@ -71,6 +71,10 @@ asdf plugin add golang https://github.com/asdf-community/asdf-golang.git
 asdf install golang 1.22.1
 asdf global golang 1.22.1
 
+asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git
+asdf install ruby 3.3.0
+asdf global ruby 3.3.0
+
 ## Additional settings
 
 # Change git init default branch name
