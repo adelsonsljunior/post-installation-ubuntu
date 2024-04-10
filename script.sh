@@ -36,6 +36,7 @@ sudo apt update -y
 ## Installing programs using apt
 
 sudo apt install -y git curl neofetch tmux vim htop build-essential net-tools 
+sudo apt install -y automake autoconf libreadline-dev libncurses-dev libssl-dev libyaml-dev libxslt-dev libffi-dev libtool unixodbc-dev zlib1g-dev sqlite3 libsqlite3-dev
 sudo apt install -y linux-headers-$(uname -r) dkms virtualbox-7.0
 sudo apt install -y vagrant
 sudo apt install -y apt-transport-https code
