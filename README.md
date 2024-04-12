@@ -10,7 +10,8 @@ $ curl -s https://raw.githubusercontent.com/adelsonsljunior/post-installation-ub
 
 > ## Content
 
-+ Git, Curl, Neofetch, Tmux, Vim, Htop, build-essential, net-tools 
++ Git, Curl, Neofetch, Tmux, Vim, Htop, build-essential, net-tools
++ automake autoconf libreadline-dev libncurses-dev libssl-dev libyaml-dev libxslt-dev libffi-dev libtool unixodbc-dev zlib1g-dev sqlite3 libsqlite3-dev
 + Oracle VirtualBox
 + Vagrant
 + VS Code
@@ -18,11 +19,11 @@ $ curl -s https://raw.githubusercontent.com/adelsonsljunior/post-installation-ub
     + Portainer
 + SDKMAN
     + Java
-    + Quarkus
     + Kotlin
 + asdf
-    + Nodejs
-    + Golang
+    + Nodejs 20.12.1
+    + Golang 1.22.1
+    + Ruby 3.3.0
 
 
 <br>
