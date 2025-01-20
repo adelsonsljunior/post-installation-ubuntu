@@ -35,8 +35,7 @@ sudo apt update -y
 
 ## Installing programs using apt
 
-sudo apt install -y git curl neofetch tmux vim htop build-essential net-tools 
-sudo apt install -y automake autoconf libreadline-dev libncurses-dev libssl-dev libyaml-dev libxslt-dev libffi-dev libtool unixodbc-dev zlib1g-dev sqlite3 libsqlite3-dev
+sudo apt install -y git curl vim htop build-essential net-tools 
 sudo apt install -y linux-headers-$(uname -r) dkms virtualbox-7.0
 sudo apt install -y vagrant
 sudo apt install -y apt-transport-https code
@@ -63,17 +62,6 @@ git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.0
 echo -e '\n. $HOME/.asdf/asdf.sh' >> ~/.bashrc
 echo -e '\n. $HOME/.asdf/completions/asdf.bash' >> ~/.bashrc
 
-asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
-asdf install nodejs 20.12.1
-asdf global nodejs 20.12.1
-
-asdf plugin add golang https://github.com/asdf-community/asdf-golang.git
-asdf install golang 1.22.1
-asdf global golang 1.22.1
-
-asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git
-asdf install ruby 3.3.0
-asdf global ruby 3.3.0
 
 ## Additional settings
 
