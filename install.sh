@@ -1,16 +1,31 @@
 #!/bin/bash
 
+DEPENDENCIES=(
+    wget
+    curl
+)
+
+for dependence in ${DEPENDENCIES[@]}; do
+    if [[ ! -x `which $dependence` ]]; then
+        echo "[INFO] - $dependence não está instalado"
+        echo "[INFO] - Instalando $dependence "
+        sudo apt install $dependence -y
+    else
+        echo "[INFO] - $dependence já está instalado."    
+    fi
+done
+
 APT_UPDATE() {
     sudo apt update -y
 }
 
-GIT_CHANGE_DEFAULT_BRANCH_NAME(){
+GIT_CHANGE_DEFAULT_BRANCH_NAME() {
     git config --global init.defaultBranch main
 }
 
 INSTALL_APT_PROGRAMS() {
     sudo apt install -y git curl vim htop build-essential net-tools
-    sudo apt install -y apt-transport-https 
+    sudo apt install -y apt-transport-https
 }
 
 INSTALL_VIRTUALBOX() {
@@ -78,4 +93,4 @@ UPDATE_AND_CLEAR_SYSTEMA() {
     sudo apt autoremove -y
 }
 
-INSTALL_VSCODE
+#INSTALL_VSCODE
