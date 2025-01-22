@@ -1,77 +1,81 @@
 #!/bin/bash
 
-## Starting with updating repositories
+APT_UPDATE() {
+    sudo apt update -y
+}
 
-sudo apt update -y
+GIT_CHANGE_DEFAULT_BRANCH_NAME(){
+    git config --global init.defaultBranch main
+}
 
-## Adding repositories 
+INSTALL_APT_PROGRAMS() {
+    sudo apt install -y git curl vim htop build-essential net-tools
+    sudo apt install -y apt-transport-https 
+}
 
-# VirtualBox
+INSTALL_VIRTUALBOX() {
+    curl https://www.virtualbox.org/download/oracle_vbox_2016.asc | gpg --dearmor >oracle_vbox_2016.gpg
+    curl https://www.virtualbox.org/download/oracle_vbox.asc | gpg --dearmor >oracle_vbox.gpg
+    sudo install -o root -g root -m 644 oracle_vbox_2016.gpg /etc/apt/trusted.gpg.d/
+    sudo install -o root -g root -m 644 oracle_vbox.gpg /etc/apt/trusted.gpg.d/
 
-cd /tmp
+    echo "deb [arch=amd64] http://download.virtualbox.org/virtualbox/debian $(lsb_release -sc) contrib" | sudo tee /etc/apt/sources.list.d/virtualbox.list
 
-curl https://www.virtualbox.org/download/oracle_vbox_2016.asc | gpg --dearmor > oracle_vbox_2016.gpg
-curl https://www.virtualbox.org/download/oracle_vbox.asc | gpg --dearmor > oracle_vbox.gpg
-sudo install -o root -g root -m 644 oracle_vbox_2016.gpg /etc/apt/trusted.gpg.d/
-sudo install -o root -g root -m 644 oracle_vbox.gpg /etc/apt/trusted.gpg.d/
+    APT_UPDATE
 
-echo "deb [arch=amd64] http://download.virtualbox.org/virtualbox/debian $(lsb_release -sc) contrib" | sudo tee /etc/apt/sources.list.d/virtualbox.list
+    sudo apt install -y linux-headers-$(uname -r) dkms virtualbox-7.0
 
-# Vagrant
-wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
-echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+}
 
-## Updating with new additional repositories
+INSTALL_VAGRANT() {
+    wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+    echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
 
-sudo apt update -y
+    APT_UPDATE
 
-## Installing programs using apt
+    sudo apt install vagrant -y
+}
 
-sudo apt install -y git curl vim htop build-essential net-tools 
-sudo apt install -y linux-headers-$(uname -r) dkms virtualbox-7.0
-sudo apt install -y vagrant
-sudo apt install -y apt-transport-https code
+INSTALL_VSCODE() {
+    sudo apt update -y
+    sudo apt install software-properties-common apt-transport-https curl
+    curl -sSL https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
+    sudo add-apt-repository -y "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
 
-## Docker and Portainer
+    sudo apt update -y
+    sudo apt install code -y
+}
 
-curl -fsSL https://get.docker.com | sudo bash
+INSTALL_DOCKER() {
+    curl -fsSL https://get.docker.com | sudo bash
+    sudo groupadd docker
+    sudo usermod -aG docker $USER
+}
 
-sudo docker volume create portainer_data
-sudo docker run -d -p 8000:8000 -p 9000:9000 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
+UP_PORTAINER() {
+    sudo docker volume create portainer_data
+    sudo docker run -d -p 8000:8000 -p 9000:9000 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
+}
 
-## SDKMAN
+INSTALL_ASDF() {
+    git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.0
+    . "$HOME/.asdf/asdf.sh"
+    echo -e '\n. $HOME/.asdf/asdf.sh' >>~/.bashrc
+    echo -e '\n. $HOME/.asdf/completions/asdf.bash' >>~/.bashrc
+}
 
-curl -s "https://get.sdkman.io" | bash
-source "$HOME/.sdkman/bin/sdkman-init.sh"
+INSTALL_SDKMAN_JAVA_QUARKUS() {
+    curl -s "https://get.sdkman.io" | bash
+    source "$HOME/.sdkman/bin/sdkman-init.sh"
 
-sdk install java
-sdk install quarkus
+    sdk install java
+    sdk install quarkus
+}
 
-## asdf
+UPDATE_AND_CLEAR_SYSTEMA() {
+    sudo apt update -y && sudo apt upgrade -y
+    sudo apt autoclean -y
+    sudo apt autoremove -y
+}
 
-git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.0
-. "$HOME/.asdf/asdf.sh"
-echo -e '\n. $HOME/.asdf/asdf.sh' >> ~/.bashrc
-echo -e '\n. $HOME/.asdf/completions/asdf.bash' >> ~/.bashrc
-
-
-## Additional settings
-
-# Change git init default branch name
-
-git config --global init.defaultBranch main
-
-# Creating the docker group and add your user
-
-sudo groupadd docker
-sudo usermod -aG docker $USER
-
-## Finishing with updating and cleaning the system
-
-sudo apt update -y && sudo apt upgrade -y
-sudo apt autoclean -y
-sudo apt autoremove -y
-
-## Reboot
-
-sudo reboot
+INSTALL_VSCODE

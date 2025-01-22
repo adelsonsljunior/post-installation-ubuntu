@@ -1,9 +1,16 @@
 #!/bin/bash
 
-flatpak install flathub com.discordapp.Discord
-flatpak install flathub com.rtosta.zapzap
-flatpak install flathub com.obsproject.Studio
-flatpak install flathub md.obsidian.Obsidian
-flatpak install flathub org.localsend.localsend_app
-flatpak install flathub org.kde.okular
-flatpak install flathub org.telegram.desktop
+INSTALL_APPS_FLATPAK=(
+    com.discordapp.Discord
+    com.rtosta.zapzap
+    com.obsproject.Studio
+    md.obsidian.Obsidian
+    org.localsend.localsend_app
+    org.kde.okular
+    org.telegram.desktop
+    com.getpostman.Postman
+)
+
+for app in ${INSTALL_APPS_FLATPAK[@]}; do
+    sudo flatpak install flathub $app -y
+done
