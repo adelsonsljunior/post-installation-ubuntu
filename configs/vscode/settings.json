@@ -1,5 +1,5 @@
 {
-    // Temas
+    // Appearance
     "workbench.colorTheme": "Nord",
     "workbench.iconTheme": "material-icon-theme",
     "editor.fontSize": 16,

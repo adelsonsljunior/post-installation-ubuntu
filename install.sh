@@ -26,7 +26,7 @@ DEPENDENCIES=(
 for dependence in ${DEPENDENCIES[@]}; do
     if [[ ! -x $(which $dependence) ]]; then
         echo "[INFO] - $dependence não está instalado."
-        echo "[INFO] - Instalando $dependence ."
+        echo "[INFO] - Instalando ${dependence}."
         sudo apt install $dependence -y
     else
         echo "[INFO] - $dependence já está instalado."
@@ -69,11 +69,18 @@ ADD_EXTERN_REPOS() {
     sudo add-apt-repository -y "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
 }
 
+VSCODE_INSTALL_EXTENSIONS() {
+    echo "[INFO] - Instalando extensões do vscode."
+    cat ./configs/vscode/extensions.txt | xargs -L 1 code --install-extension
+}
+
 VSCODE_CONFIG() {
-    echo "marceline"
+    echo "[INFO] - Copiando configurações do vscode."
+    cp ./configs/vscode/settings.json $HOME/.config/Code/User
 }
 
 INSTALL_DOCKER() {
+    echo "[INFO] - Instalando docker."
     curl -fsSL https://get.docker.com | sudo bash
     sudo groupadd docker
     sudo usermod -aG docker $USER
@@ -105,4 +112,5 @@ UPDATE_AND_CLEAR_SYSTEMA() {
     sudo apt autoremove -y
 }
 
-#INSTALL_VSCODE
+VSCODE_INSTALL_EXTENSIONS
+VSCODE_CONFIG
