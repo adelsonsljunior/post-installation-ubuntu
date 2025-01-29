@@ -1,0 +1,20 @@
+{
+    // Temas
+    "workbench.colorTheme": "Nord",
+    "workbench.iconTheme": "material-icon-theme",
+    "editor.fontSize": 16,
+    "terminal.integrated.fontSize": 16,
+    // Pets
+    "vscode-pets.petType": "totoro",
+    "vscode-pets.petSize": "small",
+    "vscode-pets.throwBallWithMouse": true,
+    // Configs
+    "files.autoSave": "afterDelay",
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false,
+        "go": false
+    }
+}
