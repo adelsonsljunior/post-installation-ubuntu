@@ -24,7 +24,7 @@ DEPENDENCIES=(
 
 ## RESOLVENDO DEPENDÊNCIAS
 for dependence in ${DEPENDENCIES[@]}; do
-    if [[ ! -x $(which $dependence) ]]; then
+    if ! dpkg -l | grep -qw "$dependence"; then #Só instala se já não estiver instalado
         echo "[INFO] - $dependence não está instalado."
         echo "[INFO] - Instalando ${dependence}."
         sudo apt install $dependence -y
@@ -112,5 +112,5 @@ UPDATE_AND_CLEAR_SYSTEMA() {
     sudo apt autoremove -y
 }
 
-VSCODE_INSTALL_EXTENSIONS
-VSCODE_CONFIG
+#VSCODE_INSTALL_EXTENSIONS
+#VSCODE_CONFIG
