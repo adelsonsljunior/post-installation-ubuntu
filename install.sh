@@ -80,13 +80,14 @@ VSCODE_CONFIG() {
 }
 
 INSTALL_DOCKER() {
-    echo "[INFO] - Instalando docker."
+    echo "[INFO] - Instalando Docker."
     curl -fsSL https://get.docker.com | sudo bash
     sudo groupadd docker
     sudo usermod -aG docker $USER
 }
 
 UP_PORTAINER() {
+    echo "[INFO] - Subindo Portainer."
     sudo docker volume create portainer_data
     sudo docker run -d -p 8000:8000 -p 9000:9000 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
 }
@@ -99,10 +100,14 @@ INSTALL_ASDF() {
 }
 
 INSTALL_SDKMAN_JAVA_QUARKUS() {
+    echo "[INFO] - Instalando sdkman."
     curl -s "https://get.sdkman.io" | bash
     source "$HOME/.sdkman/bin/sdkman-init.sh"
 
+    echo "[INFO] - Instalando Java."
     sdk install java
+
+    echo "[INFO] - Instalando Quarkus."
     sdk install quarkus
 }
 
