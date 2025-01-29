@@ -1,17 +1,35 @@
 #!/bin/bash
 
+APT_PROGRAMS=(
+    vim
+    htop
+    tree
+    build-essential
+    net-tools
+
+    #after add repos
+    code
+    vagrant
+
+)
+
 DEPENDENCIES=(
     wget
     curl
+    software-properties-common
+    apt-transport-https
+    zip
+    unzip
 )
 
+## RESOLVENDO DEPENDÊNCIAS
 for dependence in ${DEPENDENCIES[@]}; do
-    if [[ ! -x `which $dependence` ]]; then
-        echo "[INFO] - $dependence não está instalado"
-        echo "[INFO] - Instalando $dependence "
+    if [[ ! -x $(which $dependence) ]]; then
+        echo "[INFO] - $dependence não está instalado."
+        echo "[INFO] - Instalando $dependence ."
         sudo apt install $dependence -y
     else
-        echo "[INFO] - $dependence já está instalado."    
+        echo "[INFO] - $dependence já está instalado."
     fi
 done
 
@@ -19,13 +37,12 @@ APT_UPDATE() {
     sudo apt update -y
 }
 
-GIT_CHANGE_DEFAULT_BRANCH_NAME() {
-    git config --global init.defaultBranch main
+INSTALL_APT_PROGRAMS() {
+    echo "marceline"
 }
 
-INSTALL_APT_PROGRAMS() {
-    sudo apt install -y git curl vim htop build-essential net-tools
-    sudo apt install -y apt-transport-https
+GIT_CHANGE_DEFAULT_BRANCH_NAME() {
+    git config --global init.defaultBranch main
 }
 
 INSTALL_VIRTUALBOX() {
@@ -42,23 +59,18 @@ INSTALL_VIRTUALBOX() {
 
 }
 
-INSTALL_VAGRANT() {
+ADD_EXTERN_REPOS() {
+    #VAGRANT
     wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
     echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
 
-    APT_UPDATE
-
-    sudo apt install vagrant -y
-}
-
-INSTALL_VSCODE() {
-    sudo apt update -y
-    sudo apt install software-properties-common apt-transport-https curl
+    #VSCODE
     curl -sSL https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
     sudo add-apt-repository -y "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
+}
 
-    sudo apt update -y
-    sudo apt install code -y
+VSCODE_CONFIG() {
+    echo "marceline"
 }
 
 INSTALL_DOCKER() {
