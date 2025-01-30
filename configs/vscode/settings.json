@@ -9,12 +9,5 @@
     "vscode-pets.petSize": "small",
     "vscode-pets.throwBallWithMouse": true,
     // Configs
-    "files.autoSave": "afterDelay",
-    "github.copilot.enable": {
-        "*": true,
-        "plaintext": false,
-        "markdown": false,
-        "scminput": false,
-        "go": false
-    }
+    "files.autoSave": "afterDelay"
 }
