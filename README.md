@@ -17,7 +17,7 @@ git clone https://github.com/adelsonsljunior/post-install-script.git
 3. Run the script
 
 ~~~bash
-cd post-install-script && ./install.sh
+cd post-install-script && sudo ./install.sh
 ~~~
 
 

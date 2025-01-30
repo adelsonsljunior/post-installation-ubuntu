@@ -1,15 +1,20 @@
 #!/bin/bash
 
-#VARIÁVEIS
-DIRETORIO_DOWNLOADS="$HOME/Downloads/programas"
+## VARIÁVEIS
+DOWNLOADS_DIRECTORY="$HOME/Downloads/programas"
 
-#FUNÇÕES
+## FUNÇÕES
+DEP_PACKAGES=(
+    https://download.virtualbox.org/virtualbox/7.1.6/virtualbox-7.1_7.1.6-167084~Ubuntu~jammy_amd64.deb
+    https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+    https://downloads.vivaldi.com/stable/vivaldi-stable_7.1.3570.42-1_amd64.deb
+)
+
 APT_PROGRAMS=(
     vim
     htop
     tree
     build-essential
-    net-tools
 
     #after add repos
     code
@@ -28,7 +33,7 @@ DEPENDENCIES=(
 
 ## RESOLVENDO DEPENDÊNCIAS
 for dependence in ${DEPENDENCIES[@]}; do
-    if ! dpkg -l | grep -qw "$dependence"; then #Só instala se já não estiver instalado
+    if ! dpkg -l | grep -qw "$dependence"; then # Só instala se já não estiver instalado
         echo "[INFO] - $dependence não está instalado."
         echo "[INFO] - Instalando ${dependence}."
         sudo apt install $dependence -y
@@ -37,6 +42,31 @@ for dependence in ${DEPENDENCIES[@]}; do
     fi
 done
 
+REMOVE_LOCKS() {
+    sudo rm /var/lib/dpkg/lock-frontend
+    sudo rm /var/cache/apt/archives/lock
+}
+
+INSTALL_DEB_PROGRAMS() {
+    [[ ! -d "$DOWNLOADS_DIRECTORY" ]] && mkdir -p "$DOWNLOADS_DIRECTORY"
+    for url in ${DEP_PACKAGES[@]}; do
+
+        package_name=$(basename "$url" | cut -d _ -f1)
+        echo "[INFO] - Baixando $(basename "$package_name")."
+
+        if ! dpkg -l | grep -iq $package_name; then
+            echo "[INFO] - Baixando $(basename "$url")."
+            curl -L --progress-bar -o "$DOWNLOADS_DIRECTORY/$(basename "$url")" "$url"
+            echo "[INFO] - Instalando $(basename "$url")."
+            sudo dpkg -i "$DOWNLOADS_DIRECTORY/$(basename "$url")"
+            sudo apt install -f -y # Corrigir dependências quebradas
+        else
+            echo "[INFO] - $package_name já está instalado."
+        fi
+
+    done
+}
+
 APT_UPDATE() {
     sudo apt update -y
 }
@@ -44,10 +74,6 @@ APT_UPDATE() {
 INSTALL_APT_PROGRAMS() {
     echo "marceline"
 }
-
-
-
-
 
 ADD_EXTERN_REPOS() {
     #VAGRANT
@@ -109,11 +135,13 @@ UPDATE_AND_CLEAR_SYSTEMA() {
     sudo apt autoremove -y
 }
 
-#ADD_EXTERN_REPOS
-#APT_UPDATE
-
-#VSCODE_INSTALL_EXTENSIONS
-#VSCODE_CONFIG
+REMOVE_LOCKS
+INSTALL_DEB_PROGRAMS
+ADD_EXTERN_REPOS
+APT_UPDATE
+INSTALL_APT_PROGRAMS
+VSCODE_INSTALL_EXTENSIONS
+VSCODE_CONFIG
 
 #INSTALL_DOCKER
 #UP_PORTAINER
