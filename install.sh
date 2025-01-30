@@ -1,5 +1,9 @@
 #!/bin/bash
 
+#VARIÁVEIS
+DIRETORIO_DOWNLOADS="$HOME/Downloads/programas"
+
+#FUNÇÕES
 APT_PROGRAMS=(
     vim
     htop
@@ -41,27 +45,13 @@ INSTALL_APT_PROGRAMS() {
     echo "marceline"
 }
 
-GIT_CHANGE_DEFAULT_BRANCH_NAME() {
-    git config --global init.defaultBranch main
-}
 
-INSTALL_VIRTUALBOX() {
-    curl https://www.virtualbox.org/download/oracle_vbox_2016.asc | gpg --dearmor >oracle_vbox_2016.gpg
-    curl https://www.virtualbox.org/download/oracle_vbox.asc | gpg --dearmor >oracle_vbox.gpg
-    sudo install -o root -g root -m 644 oracle_vbox_2016.gpg /etc/apt/trusted.gpg.d/
-    sudo install -o root -g root -m 644 oracle_vbox.gpg /etc/apt/trusted.gpg.d/
 
-    echo "deb [arch=amd64] http://download.virtualbox.org/virtualbox/debian $(lsb_release -sc) contrib" | sudo tee /etc/apt/sources.list.d/virtualbox.list
 
-    APT_UPDATE
-
-    sudo apt install -y linux-headers-$(uname -r) dkms virtualbox-7.0
-
-}
 
 ADD_EXTERN_REPOS() {
     #VAGRANT
-    wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+    curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
     echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
 
     #VSCODE
@@ -99,16 +89,18 @@ INSTALL_ASDF() {
     echo -e '\n. $HOME/.asdf/completions/asdf.bash' >>~/.bashrc
 }
 
-INSTALL_SDKMAN_JAVA_QUARKUS() {
+INSTALL_SDKMAN_JAVA() {
     echo "[INFO] - Instalando sdkman."
     curl -s "https://get.sdkman.io" | bash
     source "$HOME/.sdkman/bin/sdkman-init.sh"
 
     echo "[INFO] - Instalando Java."
     sdk install java
+}
 
-    echo "[INFO] - Instalando Quarkus."
-    sdk install quarkus
+GIT_CHANGE_DEFAULT_BRANCH_NAME() {
+    echo "[INFO] - Alterando nome da branch padrão do git."
+    git config --global init.defaultBranch main
 }
 
 UPDATE_AND_CLEAR_SYSTEMA() {
@@ -117,5 +109,14 @@ UPDATE_AND_CLEAR_SYSTEMA() {
     sudo apt autoremove -y
 }
 
+#ADD_EXTERN_REPOS
+#APT_UPDATE
+
 #VSCODE_INSTALL_EXTENSIONS
 #VSCODE_CONFIG
+
+#INSTALL_DOCKER
+#UP_PORTAINER
+#INSTALL_SDKMAN_JAVA
+
+#GIT_CHANGE_DEFAULT_BRANCH_NAME
