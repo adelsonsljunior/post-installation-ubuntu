@@ -35,6 +35,7 @@ DEPENDENCIES=(
     apt-transport-https
     zip
     unzip
+    git
 )
 
 ## RESOLVENDO DEPENDÊNCIAS
