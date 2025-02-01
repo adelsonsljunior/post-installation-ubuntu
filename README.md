@@ -20,4 +20,11 @@ git clone https://github.com/adelsonsljunior/post-install-script.git
 cd post-install-script && ./install.sh
 ~~~
 
+<br>
+
+## Or run with curl
+
+~~~bash
+curl -s https://raw.githubusercontent.com/adelsonsljunior/post-install-script/main/install.sh | bash
+~~~
 
