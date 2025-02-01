@@ -7,7 +7,7 @@ DOWNLOADS_DIRECTORY="$HOME/Downloads/programas"
 DEP_PACKAGES=(
     https://download.virtualbox.org/virtualbox/7.1.6/virtualbox-7.1_7.1.6-167084~Ubuntu~jammy_amd64.deb
     https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-    https://downloads.vivaldi.com/stable/vivaldi-stable_7.1.3570.42-1_amd64.deb
+
 )
 
 APT_PROGRAMS=(
