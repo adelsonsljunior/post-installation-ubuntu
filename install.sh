@@ -7,7 +7,7 @@ DOWNLOADS_DIRECTORY="$HOME/Downloads/programas"
 DEP_PACKAGES=(
     https://download.virtualbox.org/virtualbox/7.1.6/virtualbox-7.1_7.1.6-167084~Ubuntu~jammy_amd64.deb
     https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-
+    https://downloads.mongodb.com/compass/mongodb-compass_1.45.2_amd64.deb
 )
 
 APT_PROGRAMS=(
