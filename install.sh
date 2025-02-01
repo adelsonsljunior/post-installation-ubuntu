@@ -2,8 +2,8 @@
 
 ## VARIÁVEIS
 DOWNLOADS_DIRECTORY="$HOME/Downloads/programas"
+VSCODE_CONFIGS_DIRECTORY="$HOME/.config/Code/User"
 
-## FUNÇÕES
 DEP_PACKAGES=(
     https://download.virtualbox.org/virtualbox/7.1.6/virtualbox-7.1_7.1.6-167084~Ubuntu~jammy_amd64.deb
     https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
@@ -18,7 +18,6 @@ APT_PROGRAMS=(
     build-essential
     code
     vagrant
-
 )
 
 FLATPAK_PROGRAMS=(
@@ -49,6 +48,7 @@ for dependence in ${DEPENDENCIES[@]}; do
     fi
 done
 
+## FUNÇÕES
 REMOVE_LOCKS() {
     sudo rm /var/lib/dpkg/lock-frontend
     sudo rm /var/cache/apt/archives/lock
@@ -58,9 +58,7 @@ INSTALL_DEB_PROGRAMS() {
     [[ ! -d "$DOWNLOADS_DIRECTORY" ]] && mkdir -p "$DOWNLOADS_DIRECTORY"
 
     for url in ${DEP_PACKAGES[@]}; do
-
         package_name=$(basename "$url" | cut -d _ -f1)
-
         if ! dpkg -l | grep -iq $package_name; then
             echo "[INFO] - Baixando $package_name."
             curl -L --progress-bar -o "$DOWNLOADS_DIRECTORY/$(basename "$url")" "$url"
@@ -70,7 +68,6 @@ INSTALL_DEB_PROGRAMS() {
         else
             echo "[INFO] - $package_name já está instalado."
         fi
-
     done
 }
 
@@ -79,7 +76,6 @@ APT_UPDATE() {
 }
 
 INSTALL_APT_PROGRAMS() {
-
     for program in ${APT_PROGRAMS[@]}; do
         if ! dpkg -l | grep -iq $program; then
             echo "[INFO] - Instalando $program."
@@ -106,6 +102,7 @@ VSCODE_INSTALL_EXTENSIONS() {
 }
 
 VSCODE_CONFIG() {
+    [[ ! -d "$VSCODE_CONFIGS_DIRECTORY" ]] && mkdir -p "$VSCODE_CONFIGS_DIRECTORY"
     echo "[INFO] - Copiando configurações do vscode."
     cp ./configs/vscode/settings.json $HOME/.config/Code/User
 }
@@ -130,6 +127,7 @@ UP_PORTAINER() {
 }
 
 INSTALL_ASDF() {
+    echo "[INFO] - Instalando asdf."
     git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.0
     . "$HOME/.asdf/asdf.sh"
     echo -e '\n. $HOME/.asdf/asdf.sh' >>~/.bashrc
@@ -150,12 +148,13 @@ GIT_CHANGE_DEFAULT_BRANCH_NAME() {
     git config --global init.defaultBranch main
 }
 
-UPDATE_AND_CLEAR_SYSTEMA() {
+UPDATE_AND_CLEAR_SYSTEM() {
     sudo apt update -y && sudo apt upgrade -y
     sudo apt autoclean -y
     sudo apt autoremove -y
 }
 
+## EXECUÇÃO
 REMOVE_LOCKS
 INSTALL_DEB_PROGRAMS
 ADD_EXTERN_REPOS
@@ -164,9 +163,9 @@ INSTALL_APT_PROGRAMS
 VSCODE_INSTALL_EXTENSIONS
 VSCODE_CONFIG
 INSTALL_FLATPAK_PROGRAMS
-
-#INSTALL_DOCKER
-#UP_PORTAINER
-#INSTALL_SDKMAN_JAVA
-
-#GIT_CHANGE_DEFAULT_BRANCH_NAME
+INSTALL_DOCKER
+UP_PORTAINER
+INSTALL_ASDF
+INSTALL_SDKMAN_JAVA
+GIT_CHANGE_DEFAULT_BRANCH_NAME
+UPDATE_AND_CLEAR_SYSTEM
