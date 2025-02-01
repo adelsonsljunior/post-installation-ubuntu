@@ -1,4 +1,4 @@
-# post-installation-ubuntu
+# post-install-script
 
 ## Prepare Workstation
 
