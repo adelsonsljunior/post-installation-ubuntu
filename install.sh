@@ -22,6 +22,15 @@ APT_PROGRAMS=(
 
 )
 
+FLATPAK_PROGRAMS=(
+    org.localsend.localsend_app
+    com.obsproject.Studio
+    md.obsidian.Obsidian
+    org.kde.okular
+    org.telegram.desktop
+    dev.vencord.Vesktop
+)
+
 DEPENDENCIES=(
     wget
     curl
@@ -93,6 +102,12 @@ VSCODE_INSTALL_EXTENSIONS() {
 VSCODE_CONFIG() {
     echo "[INFO] - Copiando configurações do vscode."
     cp ./configs/vscode/settings.json $HOME/.config/Code/User
+}
+
+INSTALL_FLATPAK_PROGRAMS() {
+    for app in ${FLATPAK_PROGRAMS[@]}; do
+        sudo flatpak install flathub $app -y
+    done
 }
 
 INSTALL_DOCKER() {
