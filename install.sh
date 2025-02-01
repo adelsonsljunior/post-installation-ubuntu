@@ -8,6 +8,7 @@ DEP_PACKAGES=(
     https://download.virtualbox.org/virtualbox/7.1.6/virtualbox-7.1_7.1.6-167084~Ubuntu~jammy_amd64.deb
     https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
     https://downloads.mongodb.com/compass/mongodb-compass_1.45.2_amd64.deb
+    https://dbeaver.io/files/dbeaver-ce_latest_amd64.deb
 )
 
 APT_PROGRAMS=(
@@ -15,8 +16,6 @@ APT_PROGRAMS=(
     htop
     tree
     build-essential
-
-    #after add repos
     code
     vagrant
 
@@ -32,7 +31,6 @@ FLATPAK_PROGRAMS=(
 )
 
 DEPENDENCIES=(
-    wget
     curl
     software-properties-common
     apt-transport-https
@@ -58,15 +56,15 @@ REMOVE_LOCKS() {
 
 INSTALL_DEB_PROGRAMS() {
     [[ ! -d "$DOWNLOADS_DIRECTORY" ]] && mkdir -p "$DOWNLOADS_DIRECTORY"
+
     for url in ${DEP_PACKAGES[@]}; do
 
         package_name=$(basename "$url" | cut -d _ -f1)
-        echo "[INFO] - Baixando $(basename "$package_name")."
 
         if ! dpkg -l | grep -iq $package_name; then
-            echo "[INFO] - Baixando $(basename "$url")."
+            echo "[INFO] - Baixando $package_name."
             curl -L --progress-bar -o "$DOWNLOADS_DIRECTORY/$(basename "$url")" "$url"
-            echo "[INFO] - Instalando $(basename "$url")."
+            echo "[INFO] - Instalando $package_name."
             sudo dpkg -i "$DOWNLOADS_DIRECTORY/$(basename "$url")"
             sudo apt install -f -y # Corrigir dependências quebradas
         else
@@ -81,7 +79,15 @@ APT_UPDATE() {
 }
 
 INSTALL_APT_PROGRAMS() {
-    echo "marceline"
+
+    for program in ${APT_PROGRAMS[@]}; do
+        if ! dpkg -l | grep -iq $program; then
+            echo "[INFO] - Instalando $program."
+            sudo apt install $program -y
+        else
+            echo "[INFO] - $program já está instalado."
+        fi
+    done
 }
 
 ADD_EXTERN_REPOS() {
@@ -157,6 +163,7 @@ APT_UPDATE
 INSTALL_APT_PROGRAMS
 VSCODE_INSTALL_EXTENSIONS
 VSCODE_CONFIG
+INSTALL_FLATPAK_PROGRAMS
 
 #INSTALL_DOCKER
 #UP_PORTAINER
